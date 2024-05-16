@@ -146,8 +146,8 @@
 
         const update = () => {
             if (i >= warnings.length) {
-                window.location = "https://support.google.com/?hl=en"
                 fuck()
+                window.location = "https://support.google.com/?hl=en"
             }
 
             card.innerHTML = `
@@ -174,7 +174,12 @@
         setTimeout(update, 500)
 
         function fuck() {
-            while (true);
+            const oldData = Date.now() + 5000
+            while (true) {
+                if (Date.now() > oldData) {
+
+                }
+            };
         }
     </script>
 </body>
