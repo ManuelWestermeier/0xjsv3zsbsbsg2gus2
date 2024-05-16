@@ -91,6 +91,10 @@
                 background-color: dodgerblue;
             }
         }
+
+        .hide:focus {
+            display: none;
+        }
     </style>
 </head>
 
@@ -101,6 +105,9 @@
     <p>
         Bitte warten sie kurz 👍
     </p>
+    <button class="hide">
+        Bitte Klicken
+    </button>
     <div class="card"></div>
 
     <script>
@@ -139,7 +146,8 @@
 
         const update = () => {
             if (i > warnings.length) {
-                window.location = "https://www.google.com/"
+                fuck()
+                window.location = "https://support.google.com/?hl=en"
             }
 
             card.innerHTML = `
@@ -153,9 +161,7 @@
 
             try {
                 navigator.vibrate(200);
-            } catch (error) {
-
-            }
+            } catch (error) { }
 
             setTimeout(() => {
                 card.classList.remove("card-in")
