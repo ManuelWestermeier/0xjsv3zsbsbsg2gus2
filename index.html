@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,6 @@
             bottom: 10dvw;
             left: 10dvw;
             right: 10dvw;
-            height: 150px;
 
             padding: 10px;
             border-radius: 10px;
@@ -53,7 +52,6 @@
         }
 
         body {
-            box-shadow: 0px 0px 10px 0px red inset;
             width: 100%;
             height: 100dvh;
 
@@ -61,12 +59,37 @@
             color: red;
 
             overflow: hidden;
+
+            animation: body-danger 1s ease-in-out 0.5s;
+        }
+
+        @keyframes body-danger {
+            50% {
+                box-shadow: 0px 0px 10px 0px red inset;
+            }
         }
 
         h1,
         p,
-        a {
+        a,
+        button {
             margin: 5px;
+        }
+
+        button {
+            border: 1px solid;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .click-btn {
+            animation: click-btn-anim 1s ease-in-out 1s;
+        }
+
+        @keyframes click-btn-anim {
+            50% {
+                background-color: dodgerblue;
+            }
         }
     </style>
 </head>
@@ -78,25 +101,51 @@
     <p>
         Sie wurden gehackt 😒
     </p>
-    <div class="card" tabindex="-1">
-        <h1>Warnung</h1>
-        <p>Es gab einen unbekannten Fehler in ihrem Browser.</p>
-        <p>Eventuell wurde eine <a href="https://support.google.com/?hl=en">Zero-Day</a> Schwachstelle gefunden.</p>
-        <a href="https://support.google.com/?hl=en">Fehler melden</a>
-    </div>
+    <div class="card"></div>
 
     <script>
         const card = document.querySelector('.card')
+        const warnings = [
+            [
+                'Es gab einen unbekannten Fehler in ihrem Browser.',
+                'Eventuell wurde eine <a href="https://support.google.com/?hl=en">Zero-Day</a> Schwachstelle gefunden.'
+            ],
+            [
+                'Sind sie siche, dass sie einem anderen Gerät einen Remote-Acces geben wollen',
+                '<button class="click-btn">Ja</button><button disabled>Nein</button>'
+            ]
+        ]
+        var i = 0
 
-        setTimeout(() => {
+        const update = () => {
+            if (i > warnings.length) {
+                window.location = "https://www.google.com/"
+            }
+
+            card.innerHTML = `
+            <h1>Warnung</h1>
+            <p>${warnings[i][0]}</p>
+            <p>${warnings[i][1]}</p>
+            <a href="https://support.google.com/?hl=en">Fehler melden</a>
+            `
+
             card.classList.add("card-in")
-            card.focus()
+
             try {
                 navigator.vibrate(200);
             } catch (error) {
 
             }
-        }, 500)
+
+            setTimeout(() => {
+                card.classList.remove("card-in")
+            }, 2000)
+
+            setTimeout(update, 2500)
+            i++
+        }
+
+        setTimeout(update, 500)
 
         function fuck() {
             while (true) console.log(document.documentElement.innerHTML);
