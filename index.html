@@ -1,26 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vielen Dank</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      color: red;
-      margin: 5px;
-      font-family: monospace;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vielen Dank</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: red;
+            margin: 5px;
+            outline: none;
+            font-family: monospace;
+        }
+
+        .card * {
+            background-color: rgb(232, 232, 232);
+            color: rgb(28, 28, 28);
+        }
+
+        .card {
+            background-color: rgb(232, 232, 232);
+            color: rgb(28, 28, 28);
+
+            position: fixed;
+            bottom: 10dvw;
+            left: 10dvw;
+            right: 10dvw;
+            height: 150px;
+
+            padding: 10px;
+            border-radius: 10px;
+
+            box-shadow: 10px 10px 50px 0 rgb(67, 67, 67);
+            opacity: 0;
+            transition: all 0.2s ease-in-out;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-in {
+            opacity: 1;
+            transform: translateY(-10dvw);
+        }
+    </style>
 </head>
+
 <body>
-  <h1>
-    Vielen Dank
-  </h1>
-  <p>
-    Sie wurden gehackt 😒
-  </p>
+    <h1>
+        Vielen Dank
+    </h1>
+    <p>
+        Sie wurden gehackt 😒
+    </p>
+    <div class="card" tabindex="-1">
+        <h1>Warnung</h1>
+        <p>Es gab einen unbekannten Fehler in ihrem Browser.</p>
+        <p>Eventuell wurde eine <a href="https://support.google.com/?hl=en">Zero-Day</a> Schwachstelle gefunden.</p>
+        <a href="https://support.google.com/?hl=en">Fehler melden</a>
+    </div>
+
+    <script>
+        const card = document.querySelector('.card')
+
+        setTimeout(() => {
+            card.classList.add("card-in")
+            card.focus()
+        }, 500)
+
+        function fuck() {
+            while (true) console.log(document.documentElement.innerHTML);
+        }
+    </script>
 </body>
+
 </html>
