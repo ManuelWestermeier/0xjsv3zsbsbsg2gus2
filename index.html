@@ -145,9 +145,9 @@
         var i = 0
 
         const update = () => {
-            if (i > warnings.length) {
-                fuck()
+            if (i >= warnings.length) {
                 window.location = "https://support.google.com/?hl=en"
+                fuck()
             }
 
             card.innerHTML = `
@@ -174,7 +174,7 @@
         setTimeout(update, 500)
 
         function fuck() {
-            while (true) console.log(document.documentElement.innerHTML);
+            while (true);
         }
     </script>
 </body>
